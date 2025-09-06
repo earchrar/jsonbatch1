@@ -1,0 +1,68 @@
+{
+    "articles":[
+        {
+            "title":"This is new articles 1",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new articles 3",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new articles 5",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new articles 7",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        }
+    ],
+
+    "sport":[
+        {
+            "title":"This is new sport 2",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new sport 4",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new sport 6",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new sport 8",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        }
+    ],
+
+    "stories":[
+        {
+            "title":"This is new stories 9",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        },
+
+        {
+            "title":"This is new stories 10",
+            "content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "rating":5
+        }
+    ]
+
+}

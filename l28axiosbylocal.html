@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Axios - Local</title>
+    </head>
+    <body>
+
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script type="text/javascript">
+
+            // => axios
+            // axios.get(url)
+            //      .then(callbackfunction)
+            //      .catch(err=>console.log(err));
+
+            const url = "./l5simpledata.json";
+
+            // Method 1 
+            // axios.get(url).then(function(response){
+
+            //         console.log(response)
+
+            //         console.log(typeof response);
+            //         console.log(typeof response.data);
+
+            //         console.log(response.data);
+            //         console.log(response.data.firstname,data.lastname);
+            //         console.log(response.data.age,data.tax);
+            //         console.log(response.data.passport);
+            //         console.log(response.data.remark);
+            //         console.log(response.data.holiday);
+            //         console.log(response.data.holiday[0],data.holiday[1]);
+            //         console.log(response.data.qualify);
+            //         console.log(response.data.qualify[0]);
+            //         console.log(response.data.qualify[0].subject,data.qualify[0]);
+
+            //      }).catch((err)=>{
+            //         console.log(err);
+            //      });
+
+            // Method 2
+
+            axios({
+                method:"GET",
+                url:url
+            }).then(function(response){
+                    console.log(response)
+                    console.log(typeof response);
+                    console.log(typeof response.data);
+
+                    console.log(response.data);
+                    console.log(response.data.firstname,data.lastname);
+                    console.log(response.data.age,data.tax);
+                    console.log(response.data.passport);
+                    console.log(response.data.remark);
+                    console.log(response.data.holiday);
+                    console.log(response.data.holiday[0],data.holiday[1]);
+                    console.log(response.data.qualify);
+                    console.log(response.data.qualify[0]);
+                    console.log(response.data.qualify[0].subject,data.qualify[0]);
+
+            }).catch((err)=>{
+                console.log(err);
+            });
+
+
+
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+
+
+

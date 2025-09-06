@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetch - Random User</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Load Data</button>
+
+        </div>
+
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const uri = `https://randomuser.me/api/`;
+
+                fetch(uri).then(response=>response.json()).then((data)=>{
+                    console.log(data);
+
+                    let html = `
+                                <h3> ${data.results[0].name.title} || ${data.results[0].name.first} ||  ${data.results[0].name.last} </h3>
+                                <img src="${data.results[0].picture.large}" />
+                            `;
+                    
+                    getdisplay.innerHTML = html;
+
+                }).catch((err)=>console.log(err));
+
+            }
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+

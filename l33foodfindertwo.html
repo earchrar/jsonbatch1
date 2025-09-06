@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food Finder - Axios </title>
+        <style type="text/css">
+
+            body{
+                display: flex;
+                justify-content: center;
+            }
+
+            .container{
+                max-width: 60vw;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                flex-direction: column;
+            }
+
+            h3{
+                font-size: 30px;
+            }
+
+            h5{
+                font-family: sans-serif;
+                font-size: 17px;
+                font-style: unset;
+                font-weight: bold;
+            }
+            
+            .random-btn{
+                font-size: 15px;
+                padding: 8px 10px;
+            }
+
+            .displayone h3{
+                font-size: 14px;
+            }
+
+            .displayone p{
+                text-align: justify;
+            }
+
+            img{
+                width: 200px;
+                height: 200px;
+                border: 3px solid #eee;
+                border-radius: 5px;
+
+                object-fit: cover;
+
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <h3>Food Finder</h3>
+
+            <button type="button" id="random-btn" class="random-btn">Get Rendom Food</button>
+
+            <div id="header"></div>
+
+            <div id="displayone"></div>
+
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script type="text/javascript">
+
+            const getrandombtn = document.getElementById("random-btn");
+            const getheader = document.getElementById("header");
+            const getdisplayone = document.getElementById("displayone");
+
+            getrandombtn.addEventListener('click',function(){
+                getrandomfood();
+            });
+
+            function getrandomfood(){
+
+                // console.log("hay");
+
+                // Lookup a single random meal
+                const url = `https:/www.themealdb.com/api/json/v1/1/random.php`;
+                // console.log(url);
+
+                axios({
+                    method:"GET",
+                    url: url
+                }).then((data)=>{
+
+                    // console.log(data);
+                    // console.log(data.data.meals[0]);
+
+                    const food = data.data.meals[0];
+
+                    // console.log(food);
+
+                    foodsettertodom(food);
+
+                }).catch((err)=>console.log(err));
+
+            }
+
+            function foodsettertodom(food){
+                // console.log(food);
+
+                const ingredients = [];
+
+                for(let x = 1; x <= 20;x++){
+                    // console.log(x);
+
+                    // ingredients.push(`${food[`strIngredient${x}`]} = ${food[`strMeasure${x}`]}`);
+
+                    if(`${food[`strIngredient${x}`]}`){
+                        ingredients.push(`${food[`strIngredient${x}`]} = ${food[`strMeasure${x}`]}`);
+                    }
+
+                }
+
+                console.log(ingredients);
+
+
+                getdisplayone.innerHTML = `
+
+                    <h5>${food.strMeal}</h5>
+
+                    <img src="${food.strMealThumb}" alt="${food.strMeal}" />
+
+                    <h5>${food.strArea}</h5>
+
+                    <div>
+                        <p>${food.strInstructions}</p>
+                        <h5>Main Ingredients</h5>
+                    </div>
+
+                    <ol>
+                        ${ingredients.map(ingredient=>`<li>${ingredient}</li>`).join("")}
+                    <ol>
+
+                `;
+
+            }
+ 
+
+        </script>
+        
+    </body>
+</html>
+
+
+

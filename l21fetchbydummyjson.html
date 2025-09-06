@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetch - Dummy JSON</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Load Data</button>
+
+        </div>
+
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const uri = `https://dummyjson.com/products`;
+
+                fetch(uri).then(respone=>respone.json()).then((data)=>{
+                    // console.log(data);
+                    // console.log(data.products);
+
+                    data.products.forEach(function(product){
+                        // console.log(product);
+                        console.log(product.id,product.brand,product.price);
+                    });
+
+                }).catch((err)=>console.log(err));
+
+            }
+
+        
+        </script>
+        
+    </body>
+</html>
+
+

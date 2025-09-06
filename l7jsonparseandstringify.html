@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON parse and JSON stringify</title>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            // JSON parse
+            
+            const student = '{"firstname":"Maung","lastname":"Zayar","age":15}';// must be single line , cuz it's string
+            
+            console.log(student);
+            console.log(typeof student);// string 
+
+            studentObj = JSON.parse(student);
+            console.log(studentObj);// {firstname: 'Maung', lastname: 'Zayar', age: 15}
+            console.log(typeof studentObj);// object
+            console.log(studentObj.firstname,studentObj.lastname);// Maung Zayar
+
+            // JSON stringify
+
+            const staff = {
+                "firstname":"Hsu",
+                "lastname":"Myat",
+                "age":20
+            };
+
+            console.log(staff);
+            console.log(typeof staff);// object 
+
+            const staffstr = JSON.stringify(staff);
+            console.log(staffstr);
+            console.log(typeof staffstr);// string
+
+
+
+        </script>
+        
+
+    </body>
+</html>
+
+<!-- Jsonparse and Jsonstringify  -->
+<!--  
+        JSON parse => Object 
+        JSON stringify => String  
+-->

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTTP Request by AJAX - IP Registry</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Click Data</button>
+
+        </div>
+
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const key = `ira_cS1maz5GbjukjwbFpL7Tx2D01rWwAZ30Iqq8`;
+                const uri = `https://api.ipregistry.co?key=${key}`;
+                
+                const xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.open("GET",uri,true);
+                xmlhttp.send();
+
+                xmlhttp.onload = function(){
+
+                    let result = xmlhttp.response;
+                    
+                    result = JSON.parse(result);
+                    console.log(result);
+
+                    let html = `
+                                <ul>
+                                    <li>External IP = ${result.ip} </li>
+                                    <li>Current Device = ${result.user_agent.device.name} / ${result["user_agent"]["device"].type}</li>
+                                    <li>Operation System = ${result.user_agent.os.name}</li>
+                                    <li>Load By = ${result.user_agent.type}</li>
+                                    <li>City = ${result.location.city}</li>
+                                    <li>Local Currency = ${result["currency"]["symbol"]}</li>
+                                    <li>Time Zone = ${result.time_zone.id}</li>
+                                </ul>
+                    `;
+
+                    getdisplay.innerHTML = html;
+
+                }
+
+            }
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+<!-- 
+
+    IP 
+
+    Local IP 
+        (i). Dynamic IP 
+        (ii). Fixed IP / Static IP
+
+    External IP 
+        (i). Public IP / Dynamic IP 
+        (ii). Fixed IP / Static IP 
+
+-->
+
+

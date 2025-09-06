@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTTP Request by AJAX - Random User</title>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            let uri = `https://randomuser.me/api/`;
+
+            const xmlhttp = new XMLHttpRequest();
+
+            // result oki
+            // xmlhttp.open("GET",uri,true); // true mean synchronous
+            // xmlhttp.send();
+
+            // result no
+            // xmlhttp.open("GET",uri,false); // false mean no synchronous
+            // xmlhttp.send();
+
+            console.log(xmlhttp);
+
+            xmlhttp.onreadystatechange = function(){
+
+                console.log("State Charge = ",xmlhttp.readyState,xmlhttp.status);
+
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                    
+                    let result = xmlhttp.responseText;
+                    // console.log(result);
+
+                    result = JSON.parse(result);
+
+                    console.log(result);
+                    console.log(result.results);
+                    console.log(result.results[0]);
+                    console.log(result.results[0].name);
+                    console.log(result.results[0].name.title,result.results[0].name.first,result.results[0].name.last);
+                    console.log(result.results[0]["name"]["title"],result.results[0]["name"]["first"],result.results[0]["name"]["last"]);
+
+                    console.log(result.results[0].picture);
+                    console.log(result.results[0].picture.large,result.results[0].picture.medium,result.results[0].picture.thumbnail)
+
+                }
+
+            }
+
+            // result oki
+            // xmlhttp.open("GET",uri,true); // true mean synchronous
+            // xmlhttp.send();
+
+            // result oki
+            xmlhttp.open("GET",uri,false); // false mean no synchronous
+            xmlhttp.send();
+
+        </script>
+        
+    </body>
+</html>
+
+<!-- 
+    => xmlhttp.onreadystatechange 
+    xmlhttp.readyState === 4 
+
+    0 = UNSENT open() has not been called yet
+    1 = OPENED send() has been called
+    2 = HEADER_RECEIVED send() has been called. and headers and status are available 
+    3 = LOADING Downloading. responseText hold partial data 
+    4 = DONE the operation is completed. 
+    
+-->
+

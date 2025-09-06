@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<productlist>
+
+    <product>
+        <name>Webstorm</name>
+        <description>html/css/js support</description>
+        <price>$100</price>
+    </product>
+
+    <product>
+        <name>Phpstorm</name>
+        <description>php support</description>
+        <price>$150</price>
+    </product>
+
+</productlist>

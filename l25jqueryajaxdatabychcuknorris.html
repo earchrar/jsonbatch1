@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Ajax - Chuck Norris</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Load Data</button>
+
+        </div>
+
+        <script src="./libs/jquery-3.7.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const uri = `https://api.chucknorris.io/jokes/random`;
+
+                // Method 1 
+
+                // $.ajax({
+                //     method:"GET",
+                //     url:uri,
+                //     dataType:"json"
+                // }).done((data)=>{
+
+                //     let html = `<img src="${data.icon_url}" />
+                //                 <h3>${data.value}</h3>`;
+
+                //     getdisplay.innerHTML = html;
+
+                // }).fail((err)=>console.log(err));
+
+                // Method 2 
+
+                // $.ajax({
+                //     method:"GET",
+                //     url:uri,
+                //     success:(getdata)
+                // });
+
+                // function getdata(data){
+
+                //     let html = `<img src="${data.icon_url}" />
+                //                 <h3>${data.value}</h3>`;
+
+                //     getdisplay.innerHTML = html;
+
+                // }
+
+                // Method 3 
+
+                // $.get(uri,output);
+
+                // function output(data){
+
+                //     let html = `<img src="${data.icon_url}" />
+                //                 <h3>${data.value}</h3>`;
+
+                //     getdisplay.innerHTML = html;
+
+                // }
+
+                // Method 4 
+
+                $.getJSON(uri,{ 
+                    format:"js"
+                }).done((data)=>{
+                    let html = ` <img src="${data.icon_url}" />
+                                 <h3>${data.value}</h3>`;
+                    // console.log(html);
+
+                    getdisplay.innerHTML = html;
+                }).fail((err)=>console.log(err)).always(()=>console.log("Bye Bye"));
+                
+            }
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+

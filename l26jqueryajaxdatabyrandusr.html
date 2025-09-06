@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery AJAX - Random User</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Load Data</button>
+
+        </div>
+
+        <script src="./libs/jquery-3.7.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const uri = `https://randomuser.me/api/`;
+
+                // Method 1 
+
+                // $.ajax({
+                //     method:"GET",
+                //     url:uri,
+                //     dataType:"json"
+                // }).done((result)=>{
+                //         let html = `<h3>${result.results[0].name.title} ${result.results[0].name.first} ${result.results[0].name.last}</h3>
+                //                     <img src="${result.results[0].picture.large}" />
+                //                     `;
+
+                //         console.log(html);
+                //         getdisplay.innerHTML = html;
+                // }).fail((err)=>console.log(err))
+
+                // Method 2 
+
+                // $.ajax({
+                //     method:"GET",
+                //     url:uri,
+                //     dataType:"json",
+                //     success:(getdata)
+                // });
+
+                // function getdata(result){
+
+                //         let html = `<h3>${result.results[0].name.title} ${result.results[0].name.first} ${result.results[0].name.last}</h3>
+                //                     <img src="${result.results[0].picture.large}" />
+                //                     `;
+
+                //         // console.log(html);
+                //         getdisplay.innerHTML = html;
+
+                // }
+
+                // Method 3
+
+                // $.get(uri,output);
+
+                // function output(result){
+
+                //     let html = `<h3>${result.results[0].name.title} ${result.results[0].name.first} ${result.results[0].name.last}</h3>
+                //                     <img src="${result.results[0].picture.large}" />
+                //                     `;
+
+                //         // console.log(html);
+                //         getdisplay.innerHTML = html;
+
+                // }
+
+                // Method 4 
+
+                $.getJSON(uri,{
+                    format:"json"
+                }).done((result)=>{
+
+                    let html = `<h3>${result.results[0].name.title} ${result.results[0].name.first} ${result.results[0].name.last}</h3>
+                                    <img src="${result.results[0].picture.large}" />
+                                    `;
+
+                        // console.log(html);
+                    getdisplay.innerHTML = html;
+
+                }).fail((err)=>console.log(err)).always(()=>console.log("Bye Bye"));
+
+                
+
+            }
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+

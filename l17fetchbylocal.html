@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetch - Local</title>
+    </head>
+    <body>
+
+
+        <script type="text/javascript">
+
+            // => fetch()
+
+            const url = "./l5simpledata.json";
+
+            fetch(url).then(function(response){
+                console.log(response);
+                console.log(response.status);// 200
+
+                return response.json();
+            }).then((data)=>{
+                console.log(data);
+
+                console.log(data);
+                console.log(data.firstname,data.lastname);
+                console.log(data.age,data.tax);
+                console.log(data.passport);
+                console.log(data.remark);
+                console.log(data.holiday);
+                console.log(data.holiday[0],data.holiday[1]);
+                console.log(data.qualify);
+                console.log(data.qualify[0]);
+                console.log(data.qualify[0].subject,data.qualify[0]);
+
+            }).catch((err)=>console.log(err));
+
+        </script>
+        
+    </body>
+</html>
+
+
+
+

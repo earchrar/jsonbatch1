@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTTP Request by AJAX</title>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            // AJAX ( Asynchronous Javascript and XML ) 
+            // Asynchronous = a to z ( အပေါ်ကာနေ စအလုပ်လုပ်နေတာ)
+
+            var xmlhttp = new XMLHttpRequest();
+
+                        // Prototype , uri , default = false 
+            xmlhttp.open("GET","l10sampledata.json",false);
+            xmlhttp.send();
+
+            // console.log(xmlhttp);   readyStatus = 4 (sure) / response = object / responseText = string / status = 200 / statusText = Ok 
+
+            let result;
+
+            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+
+                // const result = xmlhttp;
+                // console.log(xmlhttp);
+
+                result = xmlhttp.responseText;
+                // console.log(result);
+                // console.log(typeof result);// string
+
+            }
+
+            // console.log(result);
+            result = JSON.parse(result);
+            // console.log(result);
+
+            // Dot Notation 
+            // Bracket Notation
+            
+            console.log(result);
+            console.log(result.weather);// Dot Notation
+            console.log(result.weather[0]);// Dot Notation 
+            console.log(result.weather[0].main);// Dot Notation Clouds
+            console.log(result.weather[0]["main"]);// Bracket Notation Clouds
+            console.log(result.wind.speed);// 3.13 Dot Notation
+            console.log(result["wind"]["speed"]);// 3.13 Bracket Notation
+
+        </script>
+        
+    </body>
+</html>
+
+<!-- HTTP Request by AJAX 
+
+    ( Asynchornous Javascript and XML ) A since and A wait => working a to z  
+
+    =>  Syntax HTTP Request 
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open(parameter1,parameter2,parameter3);
+        xmlhttp.open(Prototype,"uri",false); => default = false
+        xmlhttp.open("GET","l10sampledata.json",false); => false = no synchornous && true = synchornous
+        xmlhttp.send();
+
+        readyStatus = 4 
+        respone = object 
+        responeText = string 
+        status = 200 
+        statusText = OK 
+
+    => Method 1 ( HTTP Request False ) 
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET",uri,false); // false means no synchornous
+        xmlhttp.send();
+
+        let result;
+
+        if(xmlhttp.readyStatus === 4 && xmlhttp.status === 200){
+            result = xmlhttp.responeText;
+            console.log(result);
+        }
+
+        result = JSON.parse(result);
+        console.log(result);
+
+    => Method 2 ( HTTP Request True ) 
+
+        const xmlhttp = new XMLHttpRequest();
+
+        // xmlhttp => oki 
+        xmlhttp.open("GET",uri,true); // true means synchornous
+        xmlhttp.send();
+
+        // xmlhttp => no
+        xmlhttp.open("GET",uri,false); // false means no synchornous
+        xmlhttp.send();
+
+        xmlhttp.onreadystatechange = function(){
+
+            if(xmlhttp.readyStatus === 4 && xmlhttp.status === 200){
+                let result;
+
+                result = xmlhttp.responeText;
+                console.log(result);
+
+                result = JSON.parse(result);
+                console.log(result);
+
+            }
+
+        }
+
+        // xmlhttp => oki
+        xmlhttp.open("GET",uri,true); // true means synchornous
+        xmlhttp.send();
+
+        // xmlhttp => oki
+        xmlhttp.open("GET",uri,false); // false means no synchornous
+        xmlhttp.send();
+        
+-->

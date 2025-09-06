@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetch - IP Registry</title>
+        <style type="text/css">
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container{
+                width: 300px;
+                background-color: #f4f4f4;
+
+                padding:20px;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div id="display"></div>
+            <button type="button" id="btn">Click Data</button>
+
+        </div>
+
+        <script type="text/javascript">
+
+            const getdisplay = document.getElementById("display");
+            const getbtn = document.getElementById("btn");
+
+            getbtn.addEventListener('click',function(){
+                loaddata();
+            });
+
+            function loaddata(){
+                // console.log("hay");
+
+                const key = `ira_cS1maz5GbjukjwbFpL7Tx2D01rWwAZ30Iqq8`;
+                const uri = `https://api.ipregistry.co?key=${key}`;
+
+                fetch(uri).then(response=>response.json()).then((data)=>{
+
+                    console.log(data);
+
+                    let html = `
+                                <ul>
+                                    <li>External IP = ${data.ip} </li>
+                                    <li>Current Device = ${data.user_agent.device.name} / ${data["user_agent"]["device"].type}</li>
+                                    <li>Operation System = ${data.user_agent.os.name}</li>
+                                    <li>Load By = ${data.user_agent.type}</li>
+                                    <li>City = ${data.location.city}</li>
+                                    <li>Local Currency = ${data["currency"]["symbol"]}</li>
+                                    <li>Time Zone = ${data.time_zone.id}</li>
+                                </ul>
+                    `;
+                    getdisplay.innerHTML = html;
+
+                }).catch();
+
+            }
+
+            
+
+        </script>
+        
+    </body>
+</html>
+
+
+

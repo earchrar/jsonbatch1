@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fetch - Open Weather Map</title>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            const latitude = "16.840527";
+            const longitude = "96.095540";
+            const key = "0966b81edea118fbca3fd45fc57760ea";
+            let uri = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=0966b81edea118fbca3fd45fc57760ea`;
+
+            fetch(uri).then(respone=>respone.json()).then((data)=>{
+                console.log(data);
+
+                console.log(data.weather);// Dot Notation
+                console.log(data.weather[0]);// Dot Notation 
+                console.log(data.weather[0].main);// Dot Notation Clouds
+                console.log(data.weather[0]["main"]);// Bracket Notation Clouds
+                console.log(data.wind.speed);// 3.13 Dot Notation
+                console.log(data["wind"]["speed"]);// 3.13 Bracket Notation
+            }).catch((err)=>console.log(err));
+
+
+
+        </script>
+        
+    </body>
+</html>
