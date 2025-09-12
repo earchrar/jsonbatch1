@@ -1,0 +1,279 @@
+JSON ( Javascript Object Notation )
+
+1. AJAX ( Asynchronous Javascript and XML )
+
+    xmlhttp.onreadystatechange = 4 || readyStatus === 4 
+        0 = UNSENT open() has not been called yet
+        1 = OPENED send() has been called
+        2 = HEADER_RECEIVED send() has been called. and headers and status are available 
+        3 = LOADING Downloading. responseText hold partial data 
+        4 = DONE the operation is completed. 
+
+    HTTP Request by AJAX (false)
+    
+        => AJAX ( Asynchronous Javascript and XML )
+            Asynchronous = a to z ( အပေါ်ကာနေ စအလုပ်လုပ်နေတာ )
+
+            => Syntax 
+                var xmlhttp = new XMLHTTPRequest();
+                xmlhttp.open('prototype','url',false); => false means asynchronous is default
+                xmlhttp.send();
+
+                console.log(xmlhttp);// readyStatus = 4(sure) => response = object => responseText = string => status = 200 => statusText => ok
+
+            => Exercise 
+                var xmlhttp = new XMLHTTPRequest();
+                xmlhttp.open('GET',url,false);
+                xmlhttp.send();
+                console.log(xmlhttp);
+
+                if(xmlhttp.readyStatus === 4 && xmlhttp.status === 200){
+                    let result = xmlhttp;
+                    console.log(result);
+
+                    result = xmlhttp.responseText;
+                    console.log(result);
+                } 
+
+                result = JSON.parse(result);
+                console.log(result);
+
+    HTTP Request by AJAX (true)
+    
+        => AJAX ( Asynchronous Javascript and XML )
+
+            => Syntax 
+
+                Method 1 
+                    var xmlhttp = new XMLHTTPRequest();
+                    xmlhttp.open('GET','url',true); => true means synchronous
+                    xmlhttp.send();
+                    console.log(xmlhttp);// readyStatus = 4(sure) => response = object => responseText = string => status = 200 => statusText => ok
+
+                    xmlhttp.onreadystatechange = function(){
+                        console.log("State Charge",xmlhttp.readyStatus,xmlhttp.status);
+                        if(xmlhttp.readyStatus === 4 && xmlhttp.status === 200){
+                            result = xmlhttp.responseText;
+                            console.log(result);
+
+                            result = JSON.parse(result);
+                            console.log(result);
+                        }
+                    }
+
+                    xmlhttp.onprogress = function(){
+                        console.log("On Progress",xmlhttp.readyStatus,xmlhttp.status);
+                    }
+
+                    xmlhttp.onload = function(){
+                        console.log("On Load",xmlhttp.readyStatus,xmlhttp.status);
+                    }
+
+                Method 2 
+                    xmlhttp.onreadystatechange = function(){
+                        console.log("State Charge",xmlhttp.readyStatus,xmlhttp.status);
+                        if(xmlhttp.readyStatus === 4 && xmlhttp.status === 200){
+                            result = xmlhttp.responseText;
+                            console.log(result);
+
+                            result = JSON.parse(result);
+                            console.log(result);
+                        }
+                    }
+
+                    xmlhttp.onprogress = function(){
+                        console.log("On Progress",xmlhttp.readyStatus,xmlhttp.status);
+                    }
+
+                    xmlhttp.onload = function(){
+                        console.log("On Load",xmlhttp.readyStatus,xmlhttp.status);
+                    }
+
+                    const xmlhttp = new XMLHTTPRequest();
+                    xmlhttp.open('GET',url,true);
+                    xmlhttp.send();
+                    console.log(xmlhttp);
+
+                    const xmlhttp = new XMLHTTPRequest();
+                    xmlhttp.open('GET',url,false);
+                    xmlhttp.send();
+                    console.log(xmlhttp);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Fetch() 
+    Syntax 
+        => fetch().then().then().catch();
+        => fetch(url)
+                .then(response=>response.json())
+                .then((data)=>{})
+                .catch((err)=>console.log(err));
+    Exercise 
+        const url = `https://google.com/api`;
+
+        fetch(url)
+            .then(function(response){
+                console.log(response);
+
+                response = response.json();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+
+-------------------------------------------------------------------------------------------------------------------------------------------------      
+
+3. jQuery Ajax
+    Syntax 
+        Method 1 
+            $.ajax({
+                method:"GET",
+                url:url,
+                dataType: "json";
+            }).then(function(data){
+                console.log(data);
+            }).fail(function(err){
+                console.log(err);
+            });
+
+        Method 2 
+            $.ajax({
+                method:"GET",
+                url:url,
+                dataType: "json";
+                success: (getdata)
+            })
+            function getdata(parameter1(data),parameter2(status),parameter3(xhr)){
+                console.log(data);
+                console.log(status);// success 
+                console.log(xhr);
+            }
+
+        Method 3 
+            $.get(url,output);
+            function output(data){
+                console.log(data);
+            }
+
+        Method 4
+            $.getJSON(url,{
+                format:"json"
+            }).done({
+                console.log(data);
+            }).fail((err)=>{
+                console.log(err);
+            }).always(console.log("Good Bye"));
+
+-------------------------------------------------------------------------------------------------------------------------------------------------      
+
+4. Axios 
+    Syntax 
+        Method 1 
+            axios.get(url)
+                .then(function(data){
+                    console.log(data);
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
+
+        Method 2 
+            axios({
+                method:"GET",
+                url:url
+            }).then(function(data){
+                console.log(data);
+            }).catch(function(err){
+                console.log(err);
+            });
+
+-------------------------------------------------------------------------------------------------------------------------------------------------   
+
+5. Async and Await 
+    
+    => Synchronous 
+
+        let x = 1;
+        let y = 2;
+        console.log(x);// 1
+        console.log(y);// 2
+
+        const funone = ()=>{
+            for(let i = 0; i < 3000;i++){
+                console.log(i);// Synchronous
+            }
+        }
+
+        funone();
+
+    => Ansynchronous 
+
+        let x = 1;
+        let y = 2;
+        console.log(x);// 1
+        console.log(y);// 2
+
+        setTimeout is a asynchronous function
+        setTimeout(()=>{
+            
+        },500)
+
+        x = 1000;
+
+        console.log(x);
+        console.log(y);
+
+    => Async  
+        async function myfuntwo(){
+            return "Hello World"
+        }
+
+        myfuntwo().then(response=>{
+            console.log(response);
+        });
+
+    => Async and Await 
+
+        Method 1 
+            async function myfunthree(){
+                const setpromise = new Promise((resolve,reject)=>{
+                    // resolve = answer 
+                    // reject = error 
+
+                    setTimeout(()=>resolve("Hello Earth"),3000);
+
+                    const response = await setpromise;
+                    return response;
+                })
+            }
+
+            myfunthree().then(response=>console.log(response));
+
+        Method 2 
+            async function myfunfour(){
+                const setpromise = new Promise((resolve,reject)=>{
+                    setTimeout(()=>reslove("Hello World"),3000);
+
+                    const err = true; // false 
+
+                    if(!err){
+                        const response = await setpromise;
+                        return response;
+                    }else{
+                        await Promise.reject(new Error("Something Wrong !!!"));
+                    }
+
+                })
+            }
+
+            myfunfour().then(response=>console.log(response)).catch(err=>console.log(err));
+
+------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+
+
+
+
