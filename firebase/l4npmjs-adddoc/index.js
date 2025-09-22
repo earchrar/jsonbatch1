@@ -27,6 +27,7 @@ addDoc(collection(db,"users"),{
 });
 
 // => display auto generated id ! after data set 
+//  addDoc(collection(parameter1,parameter2),{}) 
 
 addDoc(collection(db,'users'),{
     name:"su su",
@@ -42,6 +43,8 @@ addDoc(collection(db,'users'),{
 // Create Database 
 // https://firebase.google.com/ > build > Firestore Databse > Create Database
 
+// Error for writing (PERMISSION_DENIED)
+// Rule > allow read , write: if true; > Publish 
 
 
 
