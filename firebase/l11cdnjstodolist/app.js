@@ -78,9 +78,13 @@ const showtaskstodom = (taskarrs)=>{
 
         const li = document.createElement('li');
 
+        if(task.done){
+            li.classList.add("completed");
+        }
+
         li.appendChild(document.createTextNode(task.todo));
         li.id = task.id;
-        li.className = "list-group-item";
+        li.classList.add("list-group-items");
 
         li.innerHTML += `
             <div class="action">
@@ -89,7 +93,7 @@ const showtaskstodom = (taskarrs)=>{
             </div>
         `;
 
-        console.log(li);
+        // console.log(li);
         getul.appendChild(li);
 
     });
@@ -104,6 +108,8 @@ async function addnew(){
     if(gettextbox.getAttribute('task-id')){
         // Update data
 
+        const dbRef = doc(db,"mytasks",gettextbox.getAttribute('task-id'));
+
         try{
 
             await updateDoc(dbRef,{
@@ -111,6 +117,8 @@ async function addnew(){
                 done:false
             });
 
+            gettextbox.value = "";
+            gettextbox.focus();
             gettextbox.removeAttribute('task-id');
 
         }catch(err){
@@ -151,7 +159,6 @@ function getclickedli(e){
     // console.log(e.target.closest('button').className);
 
     const getid = e.target.closest('li').getAttribute('id');
-
     const button = e.target.closest('button');
 
     if(button){
@@ -169,7 +176,12 @@ function getclickedli(e){
 console.log(tasks);
 
 function gettaskbyid(id){
-    console.log(id);
+    // console.log(id);
+
+    return tasks.find(task=>{
+        return task.id === id;
+    });
+
 }
 
 function edittasks(id){
@@ -177,6 +189,10 @@ function edittasks(id){
 
     const task = gettaskbyid(id);
     console.log(task);
+    console.log(task.todo);
+
+    gettextbox.value = task.todo;
+    gettextbox.setAttribute('task-id',task.id);
 }
 
 function deletetasks(id){

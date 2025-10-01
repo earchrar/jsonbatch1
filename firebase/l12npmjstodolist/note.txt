@@ -1,0 +1,29 @@
+npm init or npm init -y 
+npm install firebase or npm install firebase@lastest
+npm install express or npm install express@latest 
+
+=> How to use Vite 
+
+1. Install 
+    npm install --save--dev vite
+
+2. Create a new file as vite.config.js file 
+    export default defineConfig({
+        root:'./src',
+        build:{
+            outDir:'../dist', // define the output directory , the output directory for to build file
+        }
+    });
+
+3. Update package.json 
+    "scripts": {
+        "dev":"vite",
+        "build":"vite build"
+    },
+
+4. Run Build the app for production
+    npm run build 
+
+5. Run Vite in developement server 
+    npm run dev 
+
